@@ -1,0 +1,33 @@
+{
+  "name": "365-widgets-evaluate-log-file",
+  "version": "1.0.0",
+  "description": " process the log files and automate the quality control evaluation",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "start": "ts-node src/main.ts",
+    "test": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucapimentel/365-Widgets-evaluate-log.git"
+  },
+  "author": "Luca Pimentel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucapimentel/365-Widgets-evaluate-log/issues"
+  },
+  "homepage": "https://github.com/lucapimentel/365-Widgets-evaluate-log#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.3",
+    "@types/node": "^20.5.0",
+    "@typescript-eslint/eslint-plugin": "^6.3.0",
+    "@typescript-eslint/parser": "^6.3.0",
+    "eslint": "^8.47.0",
+    "jest": "^29.6.2",
+    "ts-jest": "^29.1.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6"
+  }
+}
