@@ -7,6 +7,12 @@ import {
     EvaluateConfig
 } from '../types';
 
+
+/**
+ * Calculates the mean and standard deviation of sensor data values.
+ * @param {SensorData[]} data - Array of sensor data.
+ * @returns {{ mean: number, deviation: number }} - Calculated mean and deviation.
+ */
 export function calculateDeviationAndMean(data: SensorData[]): {
     mean: number,
     deviation: number,
@@ -21,7 +27,7 @@ export function calculateDeviationAndMean(data: SensorData[]): {
         deviation
     }
 }
-
+// Configuration object for all evaluate functions based on sensor type.
 export const EVALUATE_CONFIG: EvaluateConfig = {
     thermometer: (mean: number, deviation: number, referenceValue: number) => {
         const meanDiff = Math.abs(mean - referenceValue);
@@ -50,6 +56,11 @@ export const EVALUATE_CONFIG: EvaluateConfig = {
     }
 }
 
+/**
+ * Maps log file contents to sensor data objects.
+ * @param {string[]} logContentsStr - Array of log file contents.
+ * @returns {Sensor[]} - Array of sensor data objects.
+ */
 export function mapLogFileToSensorMetric(logContentsStr: string[]): Sensor[] {
     const referenceValues: Record<SensorType, number> = {} as Record<SensorType, number>;
     let currentSensorName = '';
@@ -57,10 +68,12 @@ export function mapLogFileToSensorMetric(logContentsStr: string[]): Sensor[] {
     const mappedData = logContentsStr.reduce<Sensor[]>((acc, line) => {
         const baseSensor: Sensor = {} as Sensor;
         const [type, ...values] = line.split(' ');
+        // Process reference data.
         if (type === 'reference') {
             referenceValues.thermometer = parseFloat(values[SensorReferencePosition.thermometer]);
             referenceValues.humidity = parseFloat(values[SensorReferencePosition.humidity]);
             referenceValues.monoxide = parseInt(values[SensorReferencePosition.monoxide]);
+            // Process sensor data.
         } else if (type.includes('T')) {
             const [date, time] = type.split('T');
             const currentValue = parseFloat(values[0]);
@@ -72,6 +85,7 @@ export function mapLogFileToSensorMetric(logContentsStr: string[]): Sensor[] {
                 time,
                 value: currentValue,
             })
+            // Process new sensor type.
         } else {
             const currentSensorType = type as SensorType;
             currentSensorName = values[0];
