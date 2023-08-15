@@ -13,10 +13,11 @@ The solution is structured around three main functions:
 Usage
 To use the solution, follow these steps:
 
-Import the required types and functions from the provided TypeScript files.
-Read the log file contents.
-Call the evaluateLogFile function to generate device classifications.
-Code Structure
+* Import the required types and functions from the provided TypeScript files.
+* Read the log file contents.
+* Call the evaluateLogFile function to generate device classifications.
+
+# Code Structure
 The solution is organized into TypeScript modules:
 
 * types.ts: Contains the type definitions used throughout the solution, including sensor types, data structures, and evaluation statuses.
